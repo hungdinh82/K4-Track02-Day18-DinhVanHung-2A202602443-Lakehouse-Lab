@@ -110,3 +110,10 @@ for k, v in checks.items():
     print(f"  [{'PASS' if v else 'FAIL'}] {k}")
 assert all(checks.values()), "NB1 incomplete — see FAIL rows above"
 print("\nNB1 complete.")
+
+# %% [markdown]
+# ## Nhận xét kết quả
+# Schema enforcement kiểm tra mọi write với schema hiện có nên đã chặn `age='thirty'`;
+# schema evolution là thay đổi có chủ đích và chỉ xảy ra khi bật `schema_mode="merge"`.
+# Mỗi JSON trong `_delta_log` là bằng chứng của commit: metadata/schema và các file được
+# thêm hoặc loại bỏ ở version đó, nhờ vậy reader biết chính xác snapshot cần đọc.

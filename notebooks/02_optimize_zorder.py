@@ -176,3 +176,10 @@ print(f"\n  (speedup={speedup:.1f}x, pruning={pruned_ratio:.1f}x — the slide a
 print("   wall-clock is noisy on a laptop, which is why file-pruning is the fallback.)")
 assert all(checks.values()), "NB2 incomplete — see FAIL rows above"
 print("\nNB2 complete.")
+
+# %% [markdown]
+# ## Nhận xét kết quả
+# Compaction giảm small file để giảm overhead lập kế hoạch và mở file; Z-order sắp xếp
+# `user_id` gần nhau để min/max statistics loại nhiều file cho point query. Một file quá lớn
+# có thể làm khoảng min/max rộng hơn, nên cần cân bằng target size và độ chọn lọc. Wall-clock
+# phụ thuộc cache, CPU và I/O; tỷ lệ file pruning là chỉ báo ổn định hơn giữa máy.

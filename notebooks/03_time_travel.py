@@ -132,3 +132,9 @@ for k, v in checks.items():
     print(f"  [{'PASS' if v else 'FAIL'}] {k}")
 assert all(checks.values()), "NB3 incomplete — see FAIL rows above"
 print("\nNB3 complete.")
+
+# %% [markdown]
+# ## Nhận xét kết quả
+# Time travel chỉ đọc snapshot cũ, không làm thay đổi snapshot hiện tại. RESTORE tạo một
+# commit mới có nội dung của version được chọn; history vẫn giữ commit trước đó để audit
+# và để reader đang pin version cũ không bị mất ngữ cảnh.

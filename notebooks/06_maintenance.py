@@ -438,3 +438,10 @@ for k, v in checks.items():
     print(f"  [{'PASS' if v else 'FAIL'}] {k}")
 assert all(checks.values()), "NB6 incomplete — see FAIL rows above"
 print("\nNB6 complete.")
+
+# %% [markdown]
+# ## Nhận xét kết quả
+# Delta vacuum chỉ biết file từng xuất hiện trong transaction log; orphan do writer crash trước
+# commit không có log entry nên cần hiệu tập file trên storage với file metadata tham chiếu.
+# Trong đường PyIceberg này, expire snapshots giảm số snapshot nhưng chưa xóa manifest list vật
+# lý; orphan sweep sau retention mới thu hồi byte. Retention quá ngắn có thể phá reader cũ.

@@ -403,3 +403,10 @@ for k, v in checks.items():
     print(f"  [{'PASS' if v else 'FAIL'}] {k}")
 assert all(checks.values()), "NB7 incomplete — see FAIL rows above"
 print("\nNB7 complete.")
+
+# %% [markdown]
+# ## Nhận xét kết quả
+# Quantization int8 giảm dung lượng nhưng có thể đổi thứ hạng láng giềng gần nhau. Recall theo
+# document ID đo trùng ID tuyệt đối; topic fidelity đo ý nghĩa kết quả nên hai chỉ số khác nhau.
+# External index phải tiêu thụ delete events như Delta CDF, không chỉ upsert; nếu không nó vẫn
+# có thể trả nội dung đã bị xóa khỏi system of record.

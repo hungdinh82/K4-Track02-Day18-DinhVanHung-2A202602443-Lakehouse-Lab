@@ -299,3 +299,10 @@ for k, v in checks.items():
     print(f"  [{'PASS' if v else 'FAIL'}] {k}")
 assert all(checks.values()), "NB5 incomplete — see FAIL rows above"
 print("\nNB5 complete.")
+
+# %% [markdown]
+# ## Nhận xét kết quả
+# Hidden partitioning cho phép filter trực tiếp `ts`; Iceberg suy luận transform `day(ts)` để
+# prune file mà query không cần biết cột partition vật lý. Field ID giữ danh tính logic của cột
+# qua rename. Partition evolution thêm layout mới cho file mới, còn file cũ vẫn đọc qua metadata
+# nên không cần rewrite toàn bảng ngay lập tức.

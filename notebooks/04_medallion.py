@@ -155,3 +155,10 @@ assert n_dates >= 7, (
 # - [ ] Silver has fewer rows than Bronze (dedup worked)
 # - [ ] Gold spans ≥ 7 dates × 3 models (slide §8 medallion contract)
 # - [ ] Cost & error_rate columns populated and non-zero
+
+# %% [markdown]
+# ## Nhận xét kết quả
+# Dedup ở Silver loại `request_id` lặp do retry để latency, cost và error không bị đếm hai lần.
+# Dashboard đọc Gold vì dữ liệu đã tổng hợp theo ngày và model, nhỏ hơn và có semantic ổn định.
+# `error_rate` là request lỗi trên tổng request; chi phí là token input/output nhân giá minh họa
+# của notebook, nên chỉ phù hợp dữ liệu và bảng giá giả lập này.

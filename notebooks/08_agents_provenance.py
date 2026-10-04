@@ -479,3 +479,10 @@ for k, v in checks.items():
     print(f"  [{'PASS' if v else 'FAIL'}] {k}")
 assert all(checks.values()), "NB8 incomplete — see FAIL rows above"
 print("\nNB8 complete.")
+
+# %% [markdown]
+# ## Nhận xét kết quả
+# Pin table version trong training manifest cho phép replay đúng snapshot training đã thấy,
+# thay vì dữ liệu append sau đó. Xóa ở version hiện tại không xóa file còn được version cũ tham
+# chiếu; retention và vacuum là bước riêng. Lớp MCP là mô phỏng: replay mới so số step, cờ
+# `confirmed` do caller truyền, và provenance bucket không phải bằng chứng pháp lý.
